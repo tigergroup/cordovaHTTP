@@ -80,7 +80,7 @@
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
-   manager.responseSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [AFJSONRequestSerializer serializer];
    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -111,7 +111,7 @@
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.responseSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [AFJSONRequestSerializer serializer];
    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -142,7 +142,7 @@
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.responseSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [AFJSONRequestSerializer serializer];
    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -173,7 +173,7 @@
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.responseSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [AFJSONRequestSerializer serializer];
    [manager DELETE:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
