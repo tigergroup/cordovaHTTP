@@ -109,7 +109,7 @@
    NSDictionary *headers = [command.arguments objectAtIndex:2];
    
    [headers setValue:@"application/json" forKey:@"Content-Type"];
-   [self setRequestHeaders: headers];
+   [self setRequestHeaders: headers forManager:sharedClient];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
