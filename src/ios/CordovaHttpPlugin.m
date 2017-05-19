@@ -77,10 +77,10 @@
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
 
-   [self setRequestHeaders: headers];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
-   manager.requestSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -110,11 +110,11 @@
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
 
-   [self setRequestHeaders: headers];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.requestSerializer = [AFJSONRequestSerializer serializer];
+   manager.requestSerializer = [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
    
    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
