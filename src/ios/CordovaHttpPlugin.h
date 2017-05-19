@@ -9,8 +9,8 @@
 - (void)validateDomainName:(CDVInvokedUrlCommand*)command;
 - (void)post:(CDVInvokedUrlCommand*)command;
 - (void)get:(CDVInvokedUrlCommand*)command;
-- (void)deleteJson:(CDVInvokedUrlCommand*)command;
-- (void)putJson:(CDVInvokedUrlCommand*)command;
+- (void)delete:(CDVInvokedUrlCommand*)command;
+- (void)put:(CDVInvokedUrlCommand*)command;
 - (void)uploadFile:(CDVInvokedUrlCommand*)command;
 - (void)downloadFile:(CDVInvokedUrlCommand*)command;
 
