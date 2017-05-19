@@ -72,15 +72,14 @@
 }
 
 - (void)post:(CDVInvokedUrlCommand*)command {
-   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+   HttpManager *manager = [HttpManager sharedClient];
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
-
-   [self setRequestHeaders: headers forManager:manager];
+   [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
-   manager.requestSerializer = [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+   manager.responseSerializer = [TextResponseSerializer serializer];
    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -102,19 +101,15 @@
 }
 
 - (void)get:(CDVInvokedUrlCommand*)command {
-   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-
-      
+   HttpManager *manager = [HttpManager sharedClient];
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
-
-   [self setRequestHeaders: headers forManager:manager];
+   [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.requestSerializer = [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-   
+   manager.responseSerializer = [TextResponseSerializer serializer];
    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -140,12 +135,11 @@
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
- 
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.responseSerializer = [AFJSONRequestSerializer serializer];
+   manager.responseSerializer = [TextResponseSerializer serializer];
    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
@@ -171,12 +165,10 @@
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
-   
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
-   manager.responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
    manager.responseSerializer = [TextResponseSerializer serializer];
    [manager DELETE:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
