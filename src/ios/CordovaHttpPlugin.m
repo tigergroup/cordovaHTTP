@@ -72,7 +72,7 @@
 }
 
 - (void)post:(CDVInvokedUrlCommand*)command {
-   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
@@ -102,8 +102,7 @@
 }
 
 - (void)get:(CDVInvokedUrlCommand*)command {
-   //HttpManager *manager = [HttpManager sharedClient];
-   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
       
    NSString *url = [command.arguments objectAtIndex:0];
