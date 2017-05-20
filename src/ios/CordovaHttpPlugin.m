@@ -107,14 +107,10 @@
 }
 
 - (void)get:(CDVInvokedUrlCommand*)command {
-   HttpManager *manager = [HttpManager manager];
-   //manager.securityPolicy = securityPolicy;
-   
+   HttpManager *manager = [HttpManager sharedClient];
    NSString *url = [command.arguments objectAtIndex:0];
-   NSData *parameters = [command.arguments objectAtIndex:1];
+   NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
-
-   [headers setValue:@"application/json" forKey:@"Content-Type"];
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
