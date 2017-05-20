@@ -151,7 +151,7 @@
    NSDictionary *headers = [command.arguments objectAtIndex:2];
    
    [headers setValue:@"application/json" forKey:@"Content-Type"];
-   [self setRequestHeaders: headers];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
@@ -183,7 +183,7 @@
    NSDictionary *headers = [command.arguments objectAtIndex:2];
    
    [headers setValue:@"application/json" forKey:@"Content-Type"];
-   [self setRequestHeaders: headers];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
@@ -220,7 +220,8 @@
     
     NSURL *fileURL = [NSURL fileURLWithPath: filePathFormatted];
     
-    [self setRequestHeaders: headers];
+   [headers setValue:@"application/json" forKey:@"Content-Type"];
+   [self setRequestHeaders: headers forManager:manager];
     
     CordovaHttpPlugin* __weak weakSelf = self;
     manager.responseSerializer = [TextResponseSerializer serializer];
@@ -263,7 +264,8 @@
     NSDictionary *headers = [command.arguments objectAtIndex:2];
     NSString *filePath = [command.arguments objectAtIndex: 3];
    
-    [self setRequestHeaders: headers];
+    [headers setValue:@"application/json" forKey:@"Content-Type"];
+    [self setRequestHeaders: headers forManager:manager];
     
     CordovaHttpPlugin* __weak weakSelf = self;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
