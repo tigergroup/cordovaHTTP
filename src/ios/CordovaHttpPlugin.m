@@ -76,6 +76,8 @@
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
+   
+   [headers setValue:@"application/json" forKey:@"Content-Type"];
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
@@ -137,6 +139,8 @@
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
+   
+   [headers setValue:@"application/json" forKey:@"Content-Type"];
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
@@ -167,6 +171,8 @@
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
+   
+   [headers setValue:@"application/json" forKey:@"Content-Type"];
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
