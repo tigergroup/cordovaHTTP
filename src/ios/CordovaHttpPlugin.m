@@ -81,7 +81,7 @@
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
-   manager.requestSerializer = [AFJSONRequestSerializer serializer];
+   
    manager.responseSerializer = [TextResponseSerializer serializer];
    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -109,7 +109,7 @@
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
   
-   [headers setValue:@"application/json" forKey:@"Content-Type"];
+   //[headers setValue:@"application/json" forKey:@"Content-Type"];
    [self setRequestHeaders: headers];
    
    CordovaHttpPlugin* __weak weakSelf = self;
