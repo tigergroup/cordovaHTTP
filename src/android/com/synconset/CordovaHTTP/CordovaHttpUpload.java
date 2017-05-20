@@ -41,8 +41,6 @@ public class CordovaHttpUpload extends CordovaHttp implements Runnable {
             this.setupSecurity(request);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
-			request.acceptJson();
-            request.contentType(HttpRequest.CONTENT_TYPE_JSON);
             URI uri = new URI(filePath);
             int index = filePath.lastIndexOf('/');
             String filename = filePath.substring(index + 1);
