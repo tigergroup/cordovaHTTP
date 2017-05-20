@@ -17,9 +17,9 @@ import android.util.Log;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
-public class CordovaHttpPostJson extends CordovaHttp implements Runnable {
+public class CordovaHttpPost extends CordovaHttp implements Runnable {
     
-    public CordovaHttpPostJson(String urlString, JSONObject jsonObj, Map<String, String> headers, CallbackContext callbackContext) {
+    public CordovaHttpPost(String urlString, JSONObject jsonObj, Map<String, String> headers, CallbackContext callbackContext) {
         super(urlString, jsonObj, headers, callbackContext);
     }
     
