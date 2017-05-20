@@ -5,7 +5,8 @@
 
 @interface CordovaHttpPlugin()
 
-- (void)setRequestHeaders:(NSDictionary*)headers;
+- (void)setRequestHeaders:(NSDictionary*)headers forManager:(AFHTTPSessionManager*)manager;
+- (void)setResults:(NSMutableDictionary*)dictionary withTask:(NSURLSessionTask*)task;
 
 @end
 
