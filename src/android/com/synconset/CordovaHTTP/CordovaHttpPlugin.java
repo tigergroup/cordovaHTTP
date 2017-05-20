@@ -49,11 +49,10 @@ public class CordovaHttpPlugin extends CordovaPlugin {
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
         if (action.equals("get")) {
             String urlString = args.getString(0);
-            JSONObject params = args.getJSONObject(1);
+            JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpGet get = new CordovaHttpGet(urlString, paramsMap, headersMap, callbackContext);
+            CordovaHttpGet get = new CordovaHttpGet(urlString, jsonObj, headersMap, callbackContext);
             cordova.getThreadPool().execute(get);
         } else if (action.equals("head")) {
             String urlString = args.getString(0);
@@ -68,8 +67,8 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpPost postJson = new CordovaHttpPost(urlString, jsonObj, headersMap, callbackContext);
-            cordova.getThreadPool().execute(postJson);
+            CordovaHttpPost post = new CordovaHttpPost(urlString, jsonObj, headersMap, callbackContext);
+            cordova.getThreadPool().execute(post);
         } else if (action.equals("enableSSLPinning")) {
             try {
                 boolean enable = args.getBoolean(0);
