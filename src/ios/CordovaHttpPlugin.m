@@ -6,7 +6,6 @@
 @interface CordovaHttpPlugin()
 
 - (void)setRequestHeaders:(NSDictionary*)headers forManager:(HttpManager*)manager;
-- (void)setResults:(NSMutableDictionary*)dictionary withTask:(NSURLSessionTask*)task;
 
 @end
 
@@ -19,13 +18,22 @@
     requestSerializer = [AFHTTPRequestSerializer serializer];
 }
 
-- (void)setRequestHeaders:(NSDictionary*)headers {
-    [HttpManager sharedClient].requestSerializer = [AFHTTPRequestSerializer serializer];
-    [requestSerializer.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [[HttpManager sharedClient].requestSerializer setValue:obj forHTTPHeaderField:key];
+
+- (void)setRequestHeaders:(NSDictionary*)headers forManager:(HttpManager*)manager {
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+
+    NSString *contentType = [headers objectForKey:@"Content-Type"];
+    if([contentType isEqualToString:@"application/json"]){
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    } else {
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    }
+
+    [manager.requestSerializer.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
     }];
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [[HttpManager sharedClient].requestSerializer setValue:obj forHTTPHeaderField:key];
+        [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
     }];
 }
 
@@ -105,7 +113,7 @@
 }
 
 - (void)get:(CDVInvokedUrlCommand*)command {
-   HttpManager *manager = [HttpManager manager];
+   HttpManager *manager = [HttpManager sharedClient];
    NSString *url = [command.arguments objectAtIndex:0];
    NSDictionary *parameters = [command.arguments objectAtIndex:1];
    NSDictionary *headers = [command.arguments objectAtIndex:2];
