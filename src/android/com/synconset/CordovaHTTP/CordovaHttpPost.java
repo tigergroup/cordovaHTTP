@@ -18,7 +18,8 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpPost extends CordovaHttp implements Runnable {
-    public CordovaHttpPost(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
+    
+    public CordovaHttpPost(String urlString, JSONObject params, Map<String, String> headers, CallbackContext callbackContext) {
         super(urlString, params, headers, callbackContext);
     }
     
@@ -27,12 +28,10 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
         try {
             HttpRequest request = HttpRequest.post(this.getUrlString());
             this.setupSecurity(request);
-            request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
-			request.acceptJson();
+            request.acceptJson();
             request.contentType(HttpRequest.CONTENT_TYPE_JSON);
-			request.send(this.getParams());
-
+            request.send(getJsonObject().toString());
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
