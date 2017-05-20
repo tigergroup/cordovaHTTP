@@ -108,7 +108,7 @@
 
 - (void)get:(CDVInvokedUrlCommand*)command {
    HttpManager *manager = [HttpManager manager];
-   manager.securityPolicy = securityPolicy;
+   //manager.securityPolicy = securityPolicy;
    
    NSString *url = [command.arguments objectAtIndex:0];
    NSData *parameters = [command.arguments objectAtIndex:1];
