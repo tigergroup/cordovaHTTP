@@ -52,8 +52,8 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpGet get = new CordovaHttpGet(urlString, jsonObj, headersMap, callbackContext);
-            cordova.getThreadPool().execute(get);
+            //CordovaHttpGet get = new CordovaHttpGet(urlString, jsonObj, headersMap, callbackContext);
+            //cordova.getThreadPool().execute(get);
         } else if (action.equals("head")) {
             String urlString = args.getString(0);
             JSONObject params = args.getJSONObject(1);
