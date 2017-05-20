@@ -5,7 +5,7 @@
 
 @interface CordovaHttpPlugin()
 
-- (void)setRequestHeaders:(NSDictionary*)headers forManager:(AFHTTPSessionManager*)manager;
+- (void)setRequestHeaders:(NSDictionary*)headers forManager:(HttpManager*)manager;
 - (void)setResults:(NSMutableDictionary*)dictionary withTask:(NSURLSessionTask*)task;
 
 @end
@@ -79,7 +79,7 @@
    NSDictionary *headers = [command.arguments objectAtIndex:2];
    
    [headers setValue:@"application/json" forKey:@"Content-Type"];
-   [self setRequestHeaders: headers forManager:sharedClient];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
@@ -111,7 +111,7 @@
    NSDictionary *headers = [command.arguments objectAtIndex:2];
   
    [headers setValue:@"application/json" forKey:@"Content-Type"];
-   [self setRequestHeaders: headers forManager:sharedClient];
+   [self setRequestHeaders: headers forManager:manager];
    
    CordovaHttpPlugin* __weak weakSelf = self;
    
