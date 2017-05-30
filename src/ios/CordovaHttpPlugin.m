@@ -129,7 +129,7 @@
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
       
 	  if(responseObject){ 
-			[dictionary setObject:@"Error" forKey:@"data"];
+			[dictionary setObject:responseObject forKey:@"data"];
 	  }
 
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
