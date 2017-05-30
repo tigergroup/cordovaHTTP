@@ -128,9 +128,12 @@
       NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
       
-	  if(responseObject){ 
-			[dictionary setObject:responseObject forKey:@"data"];
+	  @try {
+		  if(responseObject){ 
+				[dictionary setObject:responseObject forKey:@"data"];
+		  }
 	  }
+      @catch (NSException *exception) {}
 
       CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
       [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
