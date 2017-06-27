@@ -129,9 +129,9 @@
       [dictionary setObject:[NSNumber numberWithInt:operation.response.statusCode] forKey:@"status"];
       
 	  @try {
-		  //if(responseObject){ 
-			//	[dictionary setObject:responseObject forKey:@"data"];
-		  //}
+		  if(responseObject){ 
+				[dictionary setObject:responseObject forKey:@"data"];
+		  }
 	  }
       @catch (NSException *exception) {}
 
