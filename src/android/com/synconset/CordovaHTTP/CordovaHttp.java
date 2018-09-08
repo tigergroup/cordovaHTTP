@@ -29,8 +29,8 @@ import java.util.Iterator;
 
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
- 
+import com.http.HttpRequest;
+
 public abstract class CordovaHttp {
     protected static final String TAG = "CordovaHTTP";
     protected static final String CHARSET = "UTF-8";

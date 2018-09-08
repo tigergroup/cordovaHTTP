@@ -35,7 +35,7 @@ import android.content.res.AssetManager;
 import android.util.Base64;
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
+import com.http.HttpRequest;
 
 public class CordovaHttpPlugin extends CordovaPlugin {
     private static final String TAG = "CordovaHTTP";

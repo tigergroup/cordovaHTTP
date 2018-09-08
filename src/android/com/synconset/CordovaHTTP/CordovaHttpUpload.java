@@ -21,8 +21,8 @@ import javax.net.ssl.SSLHandshakeException;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.http.HttpRequest;
+import com.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpUpload extends CordovaHttp implements Runnable {
     private String filePath;
