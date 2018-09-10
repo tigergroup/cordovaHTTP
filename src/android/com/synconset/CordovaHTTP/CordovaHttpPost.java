@@ -14,13 +14,12 @@ import javax.net.ssl.SSLHandshakeException;
 
 import android.util.Log;
 
-import com.http.HttpRequest;
-import com.http.HttpRequest.HttpRequestException;
+import com.github.kevinsawicki.http.HttpRequest;
+import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpPost extends CordovaHttp implements Runnable {
-    
-    public CordovaHttpPost(String urlString, JSONObject jsonObj, Map<String, String> headers, CallbackContext callbackContext) {
-        super(urlString, jsonObj, headers, callbackContext);
+    public CordovaHttpPost(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
+        super(urlString, params, headers, callbackContext);
     }
     
     @Override
@@ -29,12 +28,14 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             HttpRequest request = HttpRequest.post(this.getUrlString());
             this.setupSecurity(request);
             request.headers(this.getHeaders());
-            request.acceptJson();
+			request.acceptJson();
             request.contentType(HttpRequest.CONTENT_TYPE_JSON);
-            request.send(getJsonObject().toString());
+            request.send(this.getParams());
+            //request.form(this.getParams());
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
+            this.addResponseHeaders(request, response);
             response.put("status", code);
             if (code >= 200 && code < 300) {
                 response.put("data", body);

@@ -29,8 +29,8 @@ import java.util.Iterator;
 
 import android.util.Log;
 
-import com.http.HttpRequest;
-
+import com.github.kevinsawicki.http.HttpRequest;
+ 
 public abstract class CordovaHttp {
     protected static final String TAG = "CordovaHTTP";
     protected static final String CHARSET = "UTF-8";
@@ -41,16 +41,8 @@ public abstract class CordovaHttp {
 
     private String urlString;
     private Map<?, ?> params;
-    private JSONObject jsonObject;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
-
-    public CordovaHttp(String urlString, JSONObject jsonObj, Map<String, String> headers, CallbackContext callbackContext) {
-        this.urlString = urlString;
-        this.jsonObject = jsonObj;
-        this.headers = headers;
-        this.callbackContext = callbackContext;
-    }
     
     public CordovaHttp(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
         this.urlString = urlString;
@@ -84,15 +76,11 @@ public abstract class CordovaHttp {
     protected Map<?, ?> getParams() {
         return this.params;
     }
-
-    protected JSONObject getJsonObject() {
-        return this.jsonObject;
-    }
     
     protected Map<String, String> getHeaders() {
         return this.headers;
     }
-   
+    
     protected CallbackContext getCallbackContext() {
         return this.callbackContext;
     }
