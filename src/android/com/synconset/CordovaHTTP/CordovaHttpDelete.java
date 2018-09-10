@@ -14,8 +14,8 @@ import javax.net.ssl.SSLHandshakeException;
 
 import android.util.Log;
 
-import com.http.HttpRequest;
-import com.http.HttpRequest.HttpRequestException;
+import com.github.kevinsawicki.http.HttpRequest;
+import com.github.kevinsawicki.http.HttpRequestException;
 
 public class CordovaHttpDelete extends CordovaHttp implements Runnable {
     
