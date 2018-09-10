@@ -84,8 +84,8 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             JSONObject headers = args.getJSONObject(2);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
             CordovaHttpDelete delete = new CordovaHttpDelete(urlString, jsonObj, headersMap, callbackContext);
-            cordova.getThreadPool().execute(delete);*/
-		}else if (action.equals("enableSSLPinning")) {
+            cordova.getThreadPool().execute(delete);
+		}*/else if (action.equals("enableSSLPinning")) {
             try {
                 boolean enable = args.getBoolean(0);
                 this.enableSSLPinning(enable);
