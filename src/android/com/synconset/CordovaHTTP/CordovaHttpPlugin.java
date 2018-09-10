@@ -65,11 +65,10 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(head);
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
-            JSONObject params = args.getJSONObject(1);
+            JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, callbackContext);
+            CordovaHttpPost post = new CordovaHttpPost(urlString, jsonObj, headersMap, callbackContext);
             cordova.getThreadPool().execute(post);
         } else if (action.equals("enableSSLPinning")) {
             try {
