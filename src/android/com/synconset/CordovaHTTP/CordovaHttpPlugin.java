@@ -35,7 +35,7 @@ import android.content.res.AssetManager;
 import android.util.Base64;
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
+import com.http.HttpRequest;
 
 public class CordovaHttpPlugin extends CordovaPlugin {
     private static final String TAG = "CordovaHTTP";
@@ -65,12 +65,25 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             cordova.getThreadPool().execute(head);
         } else if (action.equals("post")) {
             String urlString = args.getString(0);
-            JSONObject params = args.getJSONObject(1);
+            JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
-            HashMap<?, ?> paramsMap = this.getMapFromJSONObject(params);
             HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
-            CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, callbackContext);
+            CordovaHttpPost post = new CordovaHttpPost(urlString, jsonObj, headersMap, callbackContext);
             cordova.getThreadPool().execute(post);
+		} else if (action.equals("put")) {
+            String urlString = args.getString(0);
+            JSONObject jsonObj = args.getJSONObject(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            CordovaHttpPut put = new CordovaHttpPut(urlString, jsonObj, headersMap, callbackContext);
+            cordova.getThreadPool().execute(put);
+		} else if (action.equals("delete")) {
+            String urlString = args.getString(0);
+            JSONObject jsonObj = args.getJSONObject(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            CordovaHttpDelete delete = new CordovaHttpDelete(urlString, jsonObj, headersMap, callbackContext);
+            cordova.getThreadPool().execute(delete);
         } else if (action.equals("enableSSLPinning")) {
             try {
                 boolean enable = args.getBoolean(0);

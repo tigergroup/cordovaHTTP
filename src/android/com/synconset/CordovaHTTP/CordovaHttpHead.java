@@ -22,8 +22,8 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.http.HttpRequest;
+import com.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpHead extends CordovaHttp implements Runnable {
     public CordovaHttpHead(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {

@@ -22,8 +22,8 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.github.kevinsawicki.http.HttpRequest;
-import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.http.HttpRequest;
+import com.http.HttpRequest.HttpRequestException;
  
 public class CordovaHttpGet extends CordovaHttp implements Runnable {
     public CordovaHttpGet(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
@@ -37,6 +37,8 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             this.setupSecurity(request);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
+			request.acceptJson();
+            request.contentType(HttpRequest.CONTENT_TYPE_JSON);
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
